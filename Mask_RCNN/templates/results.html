@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Aadhaar masking</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"
+          integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+</head>
+<body>
+<div class="container-fluid">
+
+    <div class="container-fluid">
+        <nav class="navbar navbar-expand-sm navbar-light bg-light">
+            <a class="navbar-brand" href="/">Home</a>
+        </nav>
+    </div>
+
+    <!-- <h1 class="page-header">Results</h1> -->
+
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-6">
+                <p style="font-size: 20px; text-align: center;"><b>Original</b></p>
+            </div>
+            
+            <div class="col-sm-6">
+                <p style="font-size: 20px; text-align: center;"><b>Masked</b></p>
+            </div>
+        </div>
+    </div>
+
+    
+    {% for key, value in image_data.items() %}
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-6">
+
+                <img class="img-responsive" src=" {{url_for('send_image', filename=key)}}" style=" max-width: auto; max-height: auto; display: block; text-align: center; vertical-align: middle;">
+            </div>
+            
+            <div class="col-sm-6">
+                <img class="img-responsive" src=" {{url_for('send_image', filename=value)}}" style="max-width: auto; max-height: auto; display: block; text-align: center; vertical-align: middle;">
+            </div>
+        </div>
+        &nbsp;&nbsp;&nbsp;&nbsp;
+        <hr>
+    </div>
+    {% endfor %}
+
+</div>
+
+&nbsp;&nbsp;&nbsp;&nbsp;
+
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"
+        integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS"
+        crossorigin="anonymous"></script>
+
+</body>
+</html>
