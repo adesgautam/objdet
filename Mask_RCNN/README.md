@@ -1,4 +1,4 @@
-# Simplified Matterport's version of mask RCNN
+# Simplified Matterport's version of Mask RCNN
 
 ###The original implementation of Matterport is (here)[https://github.com/matterport/Mask_RCNN]
 
