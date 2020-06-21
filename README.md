@@ -2,5 +2,5 @@
 ## You can train them on your custom dataset.
 
 ## Models
-* Mask RCNN (Modified Matterport's MRCNN).
+* Mask RCNN (Modified Matterport's Mask RCNN).
 * U-Net
