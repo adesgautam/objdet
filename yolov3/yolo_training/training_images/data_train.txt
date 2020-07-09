@@ -1,0 +1,3 @@
+training_images/img_1001.jpg 4,6,1690,677,0
+training_images/img_10.jpg 683,3,1043,496,1
+training_images/img_100.jpg 0,0,500,261,2
