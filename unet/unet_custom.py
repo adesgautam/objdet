@@ -5,13 +5,13 @@ from keras.models import Model
 from keras.optimizers import Adam
 from keras.layers import Conv2D, UpSampling2D, Concatenate, Input, MaxPooling2D, Dropout, Dense, Flatten, Activation, Conv2DTranspose, BatchNormalization
 
-def conv_block(input, n_filters, kernel_size=3 batchnorm=True):
+def conv_block(input, n_filters, kernel_size=3, batchnorm=True):
 	x = Conv2D(filters=n_filters, kernel_size=(kernel_size,kernel_size), padding = 'same', kernel_initializer = 'he_normal')(input)
 	if batchnorm:
 		x = BatchNormalization()(x)
 	x = Activation('relu')(x)
 
-	x = Conv2D(filters=n_filters, kernel_size=(kernel_size,kernel_size), padding = 'same', kernel_initializer = 'he_normal')(input)
+	x = Conv2D(filters=n_filters, kernel_size=(kernel_size,kernel_size), padding = 'same', kernel_initializer = 'he_normal')(x)
 	if batchnorm:
 		x = BatchNormalization()(x)
 	x = Activation('relu')(x)
@@ -26,19 +26,19 @@ def unet(nclasses, input_shape, dropout=0.1):
 	x = MaxPooling2D(pool_size=(2,2))(x1)
 	x = Dropout(dropout)(x)
 
-	x2 = conv_block(input=x, n_filters = 128, kernel_size=3, batchnorm=True)
+	x2 = conv_block(input=x1, n_filters = 128, kernel_size=3, batchnorm=True)
 	x = MaxPooling2D(pool_size=(2,2))(x2)
 	x = Dropout(dropout)(x)
 
-	x3 = conv_block(input=x, n_filters = 256, kernel_size=3, batchnorm=True)
+	x3 = conv_block(input=x2, n_filters = 256, kernel_size=3, batchnorm=True)
 	x = MaxPooling2D(pool_size=(2,2))(x3)
 	x = Dropout(dropout)(x)
 
-	x4 = conv_block(input=x, n_filters = 512, kernel_size=3, batchnorm=True)
+	x4 = conv_block(input=x3, n_filters = 512, kernel_size=3, batchnorm=True)
 	x = MaxPooling2D(pool_size=(2,2))(x4)
 	x = Dropout(dropout)(x)
 
-	x5 = conv_block(input=x, n_filters = 1024, kernel_size=3, batchnorm=True)
+	x5 = conv_block(input=x4, n_filters = 1024, kernel_size=3, batchnorm=True)
 
 	# Upsampling
 	y4 = Conv2DTranspose(512, (3, 3), strides = (2, 2), padding = 'same')(x5)
